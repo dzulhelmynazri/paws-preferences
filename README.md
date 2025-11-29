@@ -83,7 +83,7 @@ pnpm dev
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 paws-preferences/
@@ -140,6 +140,6 @@ The easiest way to deploy this Next.js app is using [Vercel](https://vercel.com)
 
 For more details, see the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
 
-## 📝 License
+## License
 
 MIT
