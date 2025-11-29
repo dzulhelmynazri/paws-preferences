@@ -31,7 +31,7 @@ export function CatCard({ imageUrl, onSwipe, index }: CatCardProps) {
 	};
 
 	// notes: i have to provide a fallback img due to
-	// the fact that the api sometimes returns a 500 error
+	// the fact that the api sometimes returns a 500 error on local development
 	const handleImageError = () => {
 		if (!imgError) {
 			setImgError(true);
@@ -64,8 +64,7 @@ export function CatCard({ imageUrl, onSwipe, index }: CatCardProps) {
 					alt="Cat"
 					fill
 					className="object-cover"
-					priority={index === 0}
-					loading={index === 0 ? undefined : "lazy"}
+					priority
 					sizes="(max-width: 768px) 100vw, 500px"
 					draggable={false}
 					onError={handleImageError}
