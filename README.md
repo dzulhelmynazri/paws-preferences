@@ -131,11 +131,28 @@ paws-preferences/
 
 ## Deployment
 
-The easiest way to deploy this Next.js app is using [Vercel](https://vercel.com):
+### GitHub Pages
+
+This app is configured for static export and can be deployed to GitHub Pages:
+
+1. **Push your code to GitHub** (if not already done)
+2. **Enable GitHub Pages in repository settings**:
+   - Go to Settings → Pages
+   - Under "Source", select "GitHub Actions"
+3. **The GitHub Actions workflow will automatically deploy**:
+   - The workflow runs on every push to `main` branch
+   - It builds the static site and deploys to GitHub Pages
+   - Your site will be available at `https://<username>.github.io/<repository-name>`
+
+The app is configured to use static export, so it works perfectly with GitHub Pages hosting. The environment variable `NEXT_PUBLIC_CATAAS_URL` is set to `https://cataas.com` in the GitHub Actions workflow.
+
+### Alternative: Vercel
+
+Alternatively, you can deploy using [Vercel](https://vercel.com):
 
 1. Push your code to GitHub
 2. Import your repository on Vercel
-3. Add the `NEXT_PUBLIC_CATAAS_URL` environment variable
+3. Add the `NEXT_PUBLIC_CATAAS_URL` environment variable (if using API routes)
 4. Deploy!
 
 For more details, see the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).

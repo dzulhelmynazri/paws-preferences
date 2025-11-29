@@ -19,11 +19,41 @@ import { useConfetti } from "@/hooks/use-confetti";
 
 const TOTAL_CATS = 15;
 
-const fetcher = (url: string) =>
-	fetch(url).then((res) => {
-		if (!res.ok) throw new Error("Failed to fetch cats");
-		return res.json() as Promise<Cat[]>;
+const baseUrl = process.env.NEXT_PUBLIC_CATAAS_URL;
+
+interface CataasResponse {
+	id: string;
+	url: string;
+}
+
+async function fetchRandomCat(): Promise<Cat> {
+	const response = await fetch(`${baseUrl}/cat?json=true`, {
+		cache: "no-store",
 	});
+
+	if (!response.ok) {
+		throw new Error("Failed to fetch cat");
+	}
+
+	const data: CataasResponse = await response.json();
+	const imageUrl = new URL(data.url, baseUrl).toString();
+
+	return {
+		id: data.id,
+		url: imageUrl,
+	};
+}
+
+async function fetchRandomCats(count: number): Promise<Cat[]> {
+	const cats = await Promise.all(
+		Array.from({ length: count }, () => fetchRandomCat())
+	);
+	return cats;
+}
+
+const fetcher = async () => {
+	return fetchRandomCats(TOTAL_CATS);
+};
 
 export default function Home() {
 	const { likedCats, showSummary, setLikedCats, setShowSummary, reset } =
@@ -34,7 +64,7 @@ export default function Home() {
 		error,
 		isLoading,
 		mutate,
-	} = useSWR(`/api/random-cats?count=${TOTAL_CATS}`, fetcher, {
+	} = useSWR("random-cats", fetcher, {
 		revalidateOnFocus: false,
 	});
 
