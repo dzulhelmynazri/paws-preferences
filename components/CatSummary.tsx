@@ -17,7 +17,7 @@ export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
 				<div className="mb-8">No cats were liked this time. Try again!</div>
 			) : (
 				<div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16">
-					{likedCats.map((cat) => (
+					{likedCats.map((cat, index) => (
 						<div
 							key={cat.id}
 							className="relative aspect-square rounded-2xl overflow-hidden"
@@ -27,7 +27,8 @@ export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
 								src={cat.url}
 								alt="Liked cat"
 								fill
-								priority
+								priority={index < 3}
+								loading={index < 3 ? undefined : "lazy"}
 								className="object-cover"
 								sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
 							/>

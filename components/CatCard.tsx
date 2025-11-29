@@ -64,7 +64,8 @@ export function CatCard({ imageUrl, onSwipe, index }: CatCardProps) {
 					alt="Cat"
 					fill
 					className="object-cover"
-					priority
+					priority={index === 0}
+					loading={index === 0 ? undefined : "lazy"}
 					sizes="(max-width: 768px) 100vw, 500px"
 					draggable={false}
 					onError={handleImageError}
