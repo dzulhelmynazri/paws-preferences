@@ -93,9 +93,9 @@ export default function Home() {
 	}
 
 	return (
-		<div className="w-full flex flex-col items-center px-4 py-8 max-w-3xl max-h-screen">
+		<div className="w-full flex flex-col items-center px-4 py-8 max-w-3xl text-center max-h-screen">
 			<div className="text-3xl font-bold mb-2">Paws & Preferences</div>
-			<div className="text-lg text-muted-foreground mb-8">
+			<div className="text-lg text-muted-foreground mb-4">
 				Swipe right to like, left to dislike
 			</div>
 

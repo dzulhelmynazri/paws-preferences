@@ -9,7 +9,7 @@ export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
 	return (
 		<div className="w-full max-w-3xl mx-auto px-4 py-8 text-center">
 			<div className="text-3xl font-bold mb-2 ">Your Favourite Kitties!</div>
-			<div className="text-lg text-muted-foreground mb-8">
+			<div className="text-lg text-muted-foreground mb-4">
 				You liked {likedCats.length} out of {totalCats} cats
 			</div>
 

@@ -63,7 +63,7 @@ export function CatStack({ cats, onComplete }: CatStackProps) {
 				</Button>
 				<Button
 					size="lg"
-					className="rounded-full size-16 p-0 shadow-lg bg-green-500 hover:bg-green-600 cursor-pointer"
+					className="rounded-full size-16 cursor-pointer"
 					onClick={() => handleSwipe("right")}
 				>
 					<Heart className="size-8" />
