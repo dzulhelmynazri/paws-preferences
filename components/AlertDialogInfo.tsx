@@ -24,7 +24,7 @@ export function AlertDialogInfo() {
 					Info
 				</Button>
 			</AlertDialogTrigger>
-			<AlertDialogContent>
+			<AlertDialogContent className="rounded-2xl">
 				<AlertDialogHeader>
 					<AlertDialogTitle>Important Information</AlertDialogTitle>
 					<AlertDialogDescription>
@@ -33,7 +33,9 @@ export function AlertDialogInfo() {
 					</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
-					<AlertDialogAction>Continue</AlertDialogAction>
+					<AlertDialogAction className="rounded-full ring-1 ring-gray-200 ring-offset-2 ring-offset-background">
+						Continue
+					</AlertDialogAction>
 				</AlertDialogFooter>
 			</AlertDialogContent>
 		</AlertDialog>
