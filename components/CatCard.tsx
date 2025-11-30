@@ -66,7 +66,7 @@ export function CatCard({ imageUrl, onSwipe, index }: CatCardProps) {
 			animate={{ scale: 1, opacity: 1 }}
 			transition={{ type: "spring", stiffness: 300, damping: 30 }}
 		>
-			<div className="relative w-full h-full rounded-3xl overflow-hidden">
+			<div className="relative w-full h-full rounded-3xl overflow-hidden ring-2 ring-gray-200 ring-offset-2 ring-offset-background">
 				<Image
 					src={currentImageUrl}
 					alt="Cat"

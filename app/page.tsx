@@ -90,7 +90,12 @@ export default function Home() {
 						<EmptyDescription>No data found</EmptyDescription>
 					</EmptyHeader>
 					<EmptyContent>
-						<Button onClick={handleReset}>Refresh</Button>
+						<Button
+							onClick={handleReset}
+							className="rounded-full ring-1 ring-dashed ring-border ring-offset-2 ring-offset-background"
+						>
+							Refresh
+						</Button>
 					</EmptyContent>
 				</Empty>
 			</div>

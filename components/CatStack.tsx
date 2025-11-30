@@ -56,14 +56,14 @@ export function CatStack({ cats, onComplete }: CatStackProps) {
 				<Button
 					size="lg"
 					variant="destructive"
-					className="rounded-full size-16 cursor-pointer"
+					className="rounded-full size-16 cursor-pointer ring-1 ring-gray-200 ring-offset-2 ring-offset-background"
 					onClick={() => handleSwipe("left")}
 				>
 					<X className="size-8" />
 				</Button>
 				<Button
 					size="lg"
-					className="rounded-full size-16 cursor-pointer"
+					className="rounded-full size-16 cursor-pointer ring-1 ring-gray-200 ring-offset-2 ring-offset-background"
 					onClick={() => handleSwipe("right")}
 				>
 					<Heart className="size-8" />

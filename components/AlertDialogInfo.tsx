@@ -18,7 +18,7 @@ export function AlertDialogInfo() {
 				<Button
 					variant="secondary"
 					size="lg"
-					className="cursor-pointer rounded-2xl border-2 border-dotted"
+					className="cursor-pointer rounded-full ring-2 ring-gray-200 ring-offset-2 ring-offset-background"
 				>
 					<Sparkles />
 					Info

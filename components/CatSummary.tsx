@@ -37,7 +37,7 @@ export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
 					{likedCats.map((cat) => (
 						<div
 							key={cat.id}
-							className="relative aspect-square rounded-2xl overflow-hidden"
+							className="relative aspect-square rounded-2xl overflow-hidden ring-2 ring-gray-200 ring-offset-2 ring-offset-background"
 						>
 							<Image
 								key={cat.id}
@@ -53,7 +53,11 @@ export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
 				</div>
 			)}
 
-			<Button size="lg" onClick={onReset} className="w-full cursor-pointer">
+			<Button
+				size="lg"
+				onClick={onReset}
+				className="w-full cursor-pointer rounded-full ring-2 ring-gray-200 ring-offset-2 ring-offset-background"
+			>
 				<RotateCcw className="size-5" />
 				Start Over
 			</Button>
