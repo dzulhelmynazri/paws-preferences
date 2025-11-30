@@ -47,7 +47,7 @@ export function CatCard({ imageUrl, onSwipe, index }: CatCardProps) {
 
 	return (
 		<motion.div
-			className="absolute inset-0 w-full h-full touch-none select-none"
+			className="absolute inset-0 touch-none select-none"
 			style={{
 				x,
 				rotate,
