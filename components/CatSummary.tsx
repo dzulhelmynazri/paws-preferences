@@ -1,8 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { RotateCcw, Cat } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { RotateCcw } from "lucide-react";
+import {
+	Empty,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "@/components/ui/empty";
 import { CatSummaryProps } from "@/types/cat";
 
 export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
@@ -14,7 +21,17 @@ export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
 			</div>
 
 			{likedCats.length === 0 ? (
-				<div className="mb-8">No cats were liked this time. Try again!</div>
+				<div className="flex mx-auto text-center mb-8 flex-col space-y-4 items-center justify-center">
+					<Empty>
+						<EmptyHeader>
+							<EmptyMedia variant="icon">
+								<Cat />
+							</EmptyMedia>
+							<EmptyTitle>Try again</EmptyTitle>
+							<EmptyDescription>No cats were liked this time!</EmptyDescription>
+						</EmptyHeader>
+					</Empty>
+				</div>
 			) : (
 				<div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
 					{likedCats.map((cat) => (

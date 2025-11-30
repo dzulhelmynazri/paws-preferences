@@ -1,20 +1,23 @@
 "use client";
 
 import useSWR from "swr";
+import { FileIcon } from "lucide-react";
+import Confetti from "react-confetti";
 import { CatStack } from "@/components/CatStack";
 import { CatSummary } from "@/components/CatSummary";
 import { Spinner } from "@/components/ui/spinner";
-import Confetti from "react-confetti";
+import { Button } from "@/components/ui/button";
+import { AlertDialogInfo } from "@/components/AlertDialogInfo";
 import {
 	Empty,
+	EmptyContent,
 	EmptyDescription,
 	EmptyHeader,
 	EmptyMedia,
 	EmptyTitle,
 } from "@/components/ui/empty";
-import { FileIcon } from "lucide-react";
-import { useCatSummaryStore } from "@/stores/cat-summary-store";
 import { type Cat } from "@/types/cat";
+import { useCatSummaryStore } from "@/stores/cat-summary-store";
 import { useConfetti } from "@/hooks/use-confetti";
 import { fetchRandomCats } from "@/lib/cataas";
 
@@ -23,6 +26,9 @@ const TOTAL_CATS = 15;
 export default function Home() {
 	const { likedCats, showSummary, setLikedCats, setShowSummary, reset } =
 		useCatSummaryStore();
+	const { showConfetti, windowDimensions } = useConfetti({
+		trigger: showSummary,
+	});
 
 	const {
 		data: cats,
@@ -42,10 +48,6 @@ export default function Home() {
 		reset();
 		await mutate();
 	};
-
-	const { showConfetti, windowDimensions } = useConfetti({
-		trigger: showSummary,
-	});
 
 	if (showSummary) {
 		return (
@@ -69,7 +71,7 @@ export default function Home() {
 
 	if (isLoading) {
 		return (
-			<div className="flex text-center flex-col space-y-4 items-center justify-center min-h-screen">
+			<div className="flex mx-auto text-center flex-col space-y-4 items-center justify-center min-h-screen">
 				<Spinner className="size-6" />
 				<span className="text-muted-foreground">Loading adorable cats...</span>
 			</div>
@@ -78,7 +80,7 @@ export default function Home() {
 
 	if (error) {
 		return (
-			<div className="flex text-center flex-col space-y-4 items-center justify-center min-h-screen">
+			<div className="flex mx-auto text-center flex-col space-y-4 items-center justify-center min-h-screen">
 				<Empty>
 					<EmptyHeader>
 						<EmptyMedia variant="icon">
@@ -87,19 +89,26 @@ export default function Home() {
 						<EmptyTitle>No data</EmptyTitle>
 						<EmptyDescription>No data found</EmptyDescription>
 					</EmptyHeader>
+					<EmptyContent>
+						<Button onClick={handleReset}>Refresh</Button>
+					</EmptyContent>
 				</Empty>
 			</div>
 		);
 	}
 
 	return (
-		<div className="w-full flex flex-col items-center px-4 py-8 max-w-3xl text-center max-h-screen">
+		<div className="w-full relative mx-auto flex flex-col items-center px-4 py-8 max-w-3xl text-center max-h-screen">
 			<div className="text-3xl font-bold mb-2">Paws & Preferences</div>
 			<div className="text-lg text-muted-foreground mb-4">
 				Swipe right to like, left to dislike
 			</div>
 
 			{cats && <CatStack cats={cats} onComplete={handleComplete} />}
+
+			<div className="mt-4 fixed bottom-4 right-4">
+				<AlertDialogInfo />
+			</div>
 		</div>
 	);
 }

@@ -1,10 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Heart, X } from "lucide-react";
 import { CatCard } from "./CatCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Heart, X } from "lucide-react";
 import { type Cat } from "@/types/cat";
 import { CatStackProps } from "@/types/cat";
 
