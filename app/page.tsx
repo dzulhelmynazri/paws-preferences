@@ -16,44 +16,9 @@ import { FileIcon } from "lucide-react";
 import { useCatSummaryStore } from "@/stores/cat-summary-store";
 import { type Cat } from "@/types/cat";
 import { useConfetti } from "@/hooks/use-confetti";
+import { fetchRandomCats } from "@/lib/cataas";
 
 const TOTAL_CATS = 15;
-
-const baseUrl = process.env.NEXT_PUBLIC_CATAAS_URL;
-
-interface CataasResponse {
-	id: string;
-	url: string;
-}
-
-async function fetchRandomCat(): Promise<Cat> {
-	const response = await fetch(`${baseUrl}/cat?json=true`, {
-		cache: "no-store",
-	});
-
-	if (!response.ok) {
-		throw new Error("Failed to fetch cat");
-	}
-
-	const data: CataasResponse = await response.json();
-	const imageUrl = new URL(data.url, baseUrl).toString();
-
-	return {
-		id: data.id,
-		url: imageUrl,
-	};
-}
-
-async function fetchRandomCats(count: number): Promise<Cat[]> {
-	const cats = await Promise.all(
-		Array.from({ length: count }, () => fetchRandomCat())
-	);
-	return cats;
-}
-
-const fetcher = async () => {
-	return fetchRandomCats(TOTAL_CATS);
-};
 
 export default function Home() {
 	const { likedCats, showSummary, setLikedCats, setShowSummary, reset } =
@@ -64,7 +29,7 @@ export default function Home() {
 		error,
 		isLoading,
 		mutate,
-	} = useSWR("random-cats", fetcher, {
+	} = useSWR("random-cats", () => fetchRandomCats(TOTAL_CATS), {
 		revalidateOnFocus: false,
 	});
 
