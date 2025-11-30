@@ -24,7 +24,10 @@ export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
 				<div className="flex mx-auto text-center mb-8 flex-col space-y-4 items-center justify-center">
 					<Empty>
 						<EmptyHeader>
-							<EmptyMedia variant="icon">
+							<EmptyMedia
+								variant="icon"
+								className="rounded-full size-12 ring-1 ring-gray-200 ring-offset-2 ring-offset-background"
+							>
 								<Cat />
 							</EmptyMedia>
 							<EmptyTitle>Try again</EmptyTitle>

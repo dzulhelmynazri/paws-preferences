@@ -83,7 +83,10 @@ export default function Home() {
 			<div className="flex mx-auto text-center flex-col space-y-4 items-center justify-center min-h-screen">
 				<Empty>
 					<EmptyHeader>
-						<EmptyMedia variant="icon">
+						<EmptyMedia
+							variant="icon"
+							className="rounded-full size-12 ring-1 ring-gray-200 ring-offset-2 ring-offset-background"
+						>
 							<FileIcon />
 						</EmptyMedia>
 						<EmptyTitle>No data</EmptyTitle>
