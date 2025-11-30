@@ -1,11 +1,12 @@
 "use client";
 
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, PanInfo } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { CatCardProps } from "@/types/cat";
 
 const SWIPE_THRESHOLD = 100;
+const VELOCITY_THRESHOLD = 500;
 const FALLBACK_IMAGE = "/404.jpg";
 
 export function CatCard({ imageUrl, onSwipe, index }: CatCardProps) {
@@ -20,18 +21,23 @@ export function CatCard({ imageUrl, onSwipe, index }: CatCardProps) {
 		[0, 1, 1, 1, 0]
 	);
 
-	const handleDragEnd = () => {
+	const handleDragEnd = (
+		_event: MouseEvent | TouchEvent | PointerEvent,
+		info: PanInfo
+	) => {
 		const xValue = x.get();
+		const velocity = info.velocity.x;
 
-		if (Math.abs(xValue) > SWIPE_THRESHOLD) {
-			onSwipe(xValue > 0 ? "right" : "left");
+		if (
+			Math.abs(xValue) > SWIPE_THRESHOLD ||
+			Math.abs(velocity) > VELOCITY_THRESHOLD
+		) {
+			onSwipe(xValue > 0 || velocity > 0 ? "right" : "left");
 		} else {
 			x.set(0);
 		}
 	};
 
-	// notes: i have to provide a fallback img due to
-	// the fact that the api sometimes returns a 500 error on local development
 	const handleImageError = () => {
 		if (!imgError) {
 			setImgError(true);
@@ -50,8 +56,10 @@ export function CatCard({ imageUrl, onSwipe, index }: CatCardProps) {
 				cursor: index === 0 ? "grab" : "default",
 			}}
 			drag={index === 0 ? "x" : false}
-			dragConstraints={{ left: -300, right: 300 }}
-			dragElastic={0.2}
+			dragConstraints={{ left: 0, right: 0 }}
+			dragElastic={0.8}
+			dragMomentum={true}
+			dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
 			onDragEnd={handleDragEnd}
 			whileDrag={{ scale: 1.05, cursor: "grabbing" }}
 			initial={{ scale: 0.9, opacity: 0 }}
@@ -63,7 +71,7 @@ export function CatCard({ imageUrl, onSwipe, index }: CatCardProps) {
 					src={currentImageUrl}
 					alt="Cat"
 					fill
-					className="object-cover"
+					className="object-cover pointer-events-none"
 					priority
 					sizes="(max-width: 768px) 100vw, 500px"
 					draggable={false}

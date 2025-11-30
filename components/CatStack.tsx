@@ -35,7 +35,7 @@ export function CatStack({ cats, onComplete }: CatStackProps) {
 	if (!visibleCats.length) return null;
 
 	return (
-		<div className="relative w-full max-w-md mx-auto h-[500px]">
+		<div className="relative w-full max-w-md mx-auto h-[450px]">
 			<Badge
 				variant="secondary"
 				className="z-50 absolute top-4 right-4 py-2 px-4"

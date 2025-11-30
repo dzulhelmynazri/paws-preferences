@@ -16,7 +16,7 @@ export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
 			{likedCats.length === 0 ? (
 				<div className="mb-8">No cats were liked this time. Try again!</div>
 			) : (
-				<div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16">
+				<div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
 					{likedCats.map((cat) => (
 						<div
 							key={cat.id}
