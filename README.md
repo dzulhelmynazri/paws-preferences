@@ -11,9 +11,10 @@ A fun, interactive Tinder-like swipe interface for discovering and rating adorab
 
 - **Swipeable Interface**: Drag cards left or right, or use the action buttons
 - **Smooth Animations**: Powered by Framer Motion for fluid card transitions
+- **Bounce Cards Animation**: GSAP-powered animated card stack in the summary view
 - **Persistent State**: Your preferences are saved using Zustand with localStorage
 - **Celebration**: Confetti animation when you complete the session
-- **Summary View**: See all your liked cats in a beautiful grid layout
+- **Summary View**: See all your liked cats in a beautiful animated grid layout
 - **Reset & Retry**: Start over with a fresh set of random cats
 - **Error Handling**: Automatic fallback images for failed API requests
 - **Optimized Performance**: Built with Next.js 16 App Router and SWR for efficient data fetching
@@ -41,6 +42,7 @@ A fun, interactive Tinder-like swipe interface for discovering and rating adorab
 ### Animations & Effects
 
 - **[Framer Motion](https://www.framer.com/motion/)** - Animation library for React
+- **[GSAP](https://gsap.com/)** - Professional animation library for bounce card effects
 - **[React Confetti](https://github.com/alampros/react-confetti)** - Celebration effects
 
 ### API
@@ -88,23 +90,35 @@ pnpm dev
 ```
 paws-preferences/
 ├── app/
-│   ├── api/
-│   │   └── random-cats/      # API route for fetching random cats
 │   ├── layout.tsx             # Root layout
-│   └── page.tsx               # Main page component
+│   ├── page.tsx               # Main page component
+│   ├── globals.css            # Global styles
+│   └── favicon.ico            # App favicon
 ├── components/
 │   ├── ui/                    # Reusable UI components (shadcn/ui)
+│   │   ├── alert-dialog.tsx   # Alert dialog component
+│   │   ├── badge.tsx          # Badge component
+│   │   ├── button.tsx         # Button component
+│   │   ├── empty.tsx          # Empty state component
+│   │   ├── skeleton.tsx       # Skeleton loader component
+│   │   └── spinner.tsx        # Spinner component
+│   ├── AlertDialogInfo.tsx    # Info dialog component
+│   ├── BounceCards.tsx        # GSAP animated card stack component
 │   ├── CatCard.tsx            # Individual swipeable cat card
 │   ├── CatStack.tsx           # Stack of cat cards with swipe logic
 │   └── CatSummary.tsx         # Summary view of liked cats
 ├── hooks/
 │   └── use-confetti.ts        # Confetti animation hook
+├── lib/
+│   ├── cataas.ts              # CATAAS API integration
+│   └── utils.ts               # Utility functions
 ├── stores/
 │   └── cat-summary-store.ts   # Zustand store for app state
 ├── types/
 │   └── cat.ts                 # TypeScript type definitions
-└── lib/
-    └── utils.ts               # Utility functions
+├── public/                    # Static assets
+├── next.config.ts             # Next.js configuration
+└── tsconfig.json              # TypeScript configuration
 ```
 
 ## How to Use
@@ -125,9 +139,9 @@ paws-preferences/
 
 ## Environment Variables
 
-| Variable                 | Description                 | Required |
-| ------------------------ | --------------------------- | -------- |
-| `NEXT_PUBLIC_CATAAS_URL` | Base URL for the CATAAS API | Yes      |
+| Variable                 | Description                 | Required | Default              |
+| ------------------------ | --------------------------- | -------- | -------------------- |
+| `NEXT_PUBLIC_CATAAS_URL` | Base URL for the CATAAS API | No       | `https://cataas.com` |
 
 ## Deployment
 
