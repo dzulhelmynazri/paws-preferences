@@ -1,11 +1,10 @@
 "use client";
 
 import useSWR from "swr";
-import { FileIcon } from "lucide-react";
+import { FileIcon, PawPrint } from "lucide-react";
 import Confetti from "react-confetti";
 import { CatStack } from "@/components/CatStack";
 import { CatSummary } from "@/components/CatSummary";
-import { Spinner } from "@/components/ui/spinner";
 import { Button } from "@/components/ui/button";
 import { AlertDialogInfo } from "@/components/AlertDialogInfo";
 import {
@@ -20,12 +19,14 @@ import { type Cat } from "@/types/cat";
 import { useCatSummaryStore } from "@/stores/cat-summary-store";
 import { useConfetti } from "@/hooks/use-confetti";
 import { fetchRandomCats } from "@/lib/cataas";
+import CircularGallery from "@/components/CircularGallery";
 
 const TOTAL_CATS = 15;
 
 export default function Home() {
 	const { likedCats, showSummary, setLikedCats, setShowSummary, reset } =
 		useCatSummaryStore();
+
 	const { showConfetti, windowDimensions } = useConfetti({
 		trigger: showSummary,
 	});
@@ -72,7 +73,7 @@ export default function Home() {
 	if (isLoading) {
 		return (
 			<div className="flex mx-auto text-center flex-col space-y-4 items-center justify-center min-h-screen">
-				<Spinner className="size-6" />
+				<PawPrint className="size-6 animate-spin" />
 				<span className="text-muted-foreground">Loading adorable cats...</span>
 			</div>
 		);
@@ -110,6 +111,15 @@ export default function Home() {
 			<div className="text-3xl font-bold mb-2">Paws & Preferences</div>
 			<div className="text-lg text-muted-foreground mb-4">
 				Swipe right to like, left to dislike
+			</div>
+
+			<div style={{ height: "600px", position: "relative" }}>
+				<CircularGallery
+					bend={3}
+					textColor="#ffffff"
+					borderRadius={0.05}
+					scrollEase={0.02}
+				/>
 			</div>
 
 			{cats && <CatStack cats={cats} onComplete={handleComplete} />}
