@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 import { RotateCcw, Cat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,7 +10,16 @@ import {
 	EmptyMedia,
 	EmptyTitle,
 } from "@/components/ui/empty";
+import BounceCards from "./BounceCards";
 import { CatSummaryProps } from "@/types/cat";
+
+const transformStyles = [
+	"rotate(5deg) translate(-150px)",
+	"rotate(0deg) translate(-70px)",
+	"rotate(-5deg)",
+	"rotate(5deg) translate(70px)",
+	"rotate(-5deg) translate(150px)",
+];
 
 export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
 	return (
@@ -36,13 +45,15 @@ export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
 					</Empty>
 				</div>
 			) : (
-				<div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+				// <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+				<div className="flex flex-row pt-16 pb-12 flex-wrap w-full mx-auto overflow-hidden justify-center relative">
 					{likedCats.map((cat) => (
 						<div
 							key={cat.id}
-							className="relative aspect-square rounded-2xl overflow-hidden ring-2 ring-gray-200 ring-offset-2 ring-offset-background"
+							// className="relative aspect-square rounded-2xl overflow-hidden ring-2 ring-gray-200 ring-offset-2 ring-offset-background"
+							className="z-10"
 						>
-							<Image
+							{/* <Image
 								key={cat.id}
 								src={cat.url}
 								alt="Liked cat"
@@ -50,6 +61,18 @@ export function CatSummary({ likedCats, totalCats, onReset }: CatSummaryProps) {
 								priority
 								className="object-cover"
 								sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+							/> */}
+
+							<BounceCards
+								className="custom-bounceCards absolute top-0 left-38 hover:z-10"
+								images={[cat.url]}
+								containerWidth={140}
+								containerHeight={160}
+								animationDelay={1}
+								animationStagger={0.1}
+								easeType="elastic.out(1, 0.5)"
+								transformStyles={transformStyles}
+								enableHover={false}
 							/>
 						</div>
 					))}
