@@ -19,7 +19,6 @@ import { type Cat } from "@/types/cat";
 import { useCatSummaryStore } from "@/stores/cat-summary-store";
 import { useConfetti } from "@/hooks/use-confetti";
 import { fetchRandomCats } from "@/lib/cataas";
-import CircularGallery from "@/components/CircularGallery";
 
 const TOTAL_CATS = 15;
 
@@ -111,15 +110,6 @@ export default function Home() {
 			<div className="text-3xl font-bold mb-2">Paws & Preferences</div>
 			<div className="text-lg text-muted-foreground mb-4">
 				Swipe right to like, left to dislike
-			</div>
-
-			<div style={{ height: "600px", position: "relative" }}>
-				<CircularGallery
-					bend={3}
-					textColor="#ffffff"
-					borderRadius={0.05}
-					scrollEase={0.02}
-				/>
 			</div>
 
 			{cats && <CatStack cats={cats} onComplete={handleComplete} />}
