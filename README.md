@@ -44,6 +44,7 @@ A fun, interactive Tinder-like swipe interface for discovering and rating adorab
 - **[Framer Motion](https://www.framer.com/motion/)** - Animation library for React
 - **[GSAP](https://gsap.com/)** - Professional animation library for bounce card effects
 - **[React Confetti](https://github.com/alampros/react-confetti)** - Celebration effects
+- **[Lottie Animation] (https://lottiefiles.com/)** - Info
 
 ### API
 
