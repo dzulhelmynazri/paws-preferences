@@ -71,7 +71,7 @@ export default function Home() {
 
 	if (isLoading) {
 		return (
-			<div className="flex mx-auto text-center flex-col space-y-4 items-center justify-center min-h-screen">
+			<div className="flex mx-auto text-center flex-col space-y-4 items-center relative justify-center min-h-screen">
 				<PawPrint className="size-6 animate-spin" />
 				<span className="text-muted-foreground">Loading adorable cats...</span>
 			</div>

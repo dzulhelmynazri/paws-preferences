@@ -8,8 +8,8 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 export function AlertDialogInfo() {
 	return (
@@ -18,9 +18,14 @@ export function AlertDialogInfo() {
 				<Button
 					variant="secondary"
 					size="lg"
-					className="cursor-pointer rounded-full ring-2 ring-gray-200 ring-offset-2 ring-offset-background"
+					className="cursor-pointer rounded-full bg-transparent ring-2 ring-gray-200 ring-offset-2 ring-offset-background"
 				>
-					<Sparkles />
+					<DotLottieReact
+						src="/loading.lottie"
+						loop
+						autoplay
+						className="w-24 -ml-10 -mr-8 -z-10 mb-8"
+					/>
 					Info
 				</Button>
 			</AlertDialogTrigger>
