@@ -21,7 +21,7 @@ export function AlertDialogInfo() {
 					className="cursor-pointer rounded-full bg-transparent ring-2 ring-gray-200 ring-offset-2 ring-offset-background"
 				>
 					<DotLottieReact
-						src="/loading.lottie"
+						src="https://lottie.host/8d913346-0a52-4627-a4f8-a6a6fcf22de2/oAkBkneyWm.lottie"
 						loop
 						autoplay
 						className="w-24 -ml-10 -mr-8 -z-10 mb-8"
